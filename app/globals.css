@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --pine:        #83bd81;
+  --pine-light:  #e8f5e8;
+  --slate:       #404e5e;
+  --ink:         #1a2530;
+  --mist:        #4a5668;
+  --bg:          #fafafa;
+  --bg-alt:      #f4f9f4;
+  --border:      #e0ebe0;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-inter);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Özel scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--pine); border-radius: 3px; }
+
+/* Plise doku: yatay kıvrım efekti */
+.plise-texture {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 17px,
+    rgba(131,189,129,0.065) 17px,
+    rgba(131,189,129,0.065) 18px
+  );
+}
+
+/* Köşe vurgusu: kart üst kenar */
+.card-top-accent::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--pine), transparent);
+  border-radius: 12px 12px 0 0;
+}
+
+/* Bölüm geçiş çizgisi */
+.section-divider {
+  width: 56px;
+  height: 3px;
+  background: var(--pine);
+  border-radius: 2px;
+  margin: 0 auto 2rem;
+}
+
+/* Öne çıkan metin efekti */
+.highlight-text {
+  position: relative;
+  display: inline-block;
+}
+.highlight-text::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 2px; right: 0;
+  height: 10px;
+  background: rgba(131,189,129,0.25);
+  z-index: -1;
+  transform: skewX(-3deg);
+}
+
+/* Fold dekoratif SVG arka plan */
+.fold-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='20' viewBox='0 0 40 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 L20 0 L40 10 L20 20 Z' fill='none' stroke='%2383bd81' stroke-width='0.4' opacity='0.18'/%3E%3C/svg%3E");
+  background-size: 40px 20px;
+}
+
+/* Animasyon yardımcıları */
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-400 { animation-delay: 400ms; }
+.animate-delay-500 { animation-delay: 500ms; }
+.animate-delay-600 { animation-delay: 600ms; }
+
+/* Kart hover */
+.hover-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(64,78,94,0.12);
+}
+
+/* Ürün kartı çerçevesi */
+.product-card {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.product-card:hover {
+  border-color: var(--pine);
+  box-shadow: 0 8px 32px rgba(131,189,129,0.18);
+  transform: translateY(-4px);
+}
+
+/* Büyük dekoratif numara */
+.deco-number {
+  font-size: clamp(80px, 12vw, 140px);
+  font-weight: 900;
+  color: rgba(131,189,129,0.08);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Güven rozeti */
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--pine-light);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--slate);
+}
+
+/* FAQ accordion */
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+
+/* Gradient başlık */
+.gradient-title {
+  background: linear-gradient(135deg, var(--ink) 0%, var(--slate) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Mobil alt bar alanı ekstra boşluk */
+@media (max-width: 767px) {
+  .pb-mobile-bar { padding-bottom: 80px; }
+}
+
+/* Özel seçim rengi */
+::selection { background: rgba(131,189,129,0.3); color: var(--ink); }
